@@ -1,0 +1,595 @@
+{
+    "provinces": [
+        {
+            "citys": [
+                {   
+                    "citysName": "成都市"
+                },
+                {   
+                    "citysName": "金堂县"
+                },
+                {
+                    "citysName": "双流区"
+                },
+                {
+                    "citysName": "郫县"
+                },
+                {
+                    "citysName": "大邑县"
+                },
+                {
+                    "citysName": "新津县"
+                },
+                {
+                    "citysName": "都江堰市"
+                },
+                {
+                    "citysName": "彭州市"
+                },
+                {
+                    "citysName": "邛崃市"
+                },
+                {
+                    "citysName": "崇州市"
+                },
+                {
+                    "citysName": "华阳"
+                },
+                {
+                    "citysName": "龙泉驿"
+                },
+                {
+                    "citysName": "新都区"
+                },
+                {
+                    "citysName": "青白江区"
+                }
+            ],
+            "provinceName": "成都市"
+        },
+        {
+            "citys": [
+                {   
+                    "citysName": "泸州市"
+                },
+                {   
+                    "citysName": "泸县"
+                },
+                {
+                    "citysName": "合江县"
+                },
+                {
+                    "citysName": "叙永县"
+                },
+                {
+                    "citysName": "古蔺县"
+                },
+                {
+                    "citysName": "纳溪区"
+                }
+            ],
+            "provinceName": "泸州市"
+        },
+        {
+            "citys": [
+                {   
+                    "citysName": "绵阳市"
+                },
+                {   
+                    "citysName": "三台县"
+                },
+                {
+                    "citysName": "盐亭县"
+                },
+                {
+                    "citysName": "安县"
+                },
+                {
+                    "citysName": "梓潼县"
+                },
+                {
+                    "citysName": "北川县"
+                },
+                {
+                    "citysName": "平武县"
+                },
+                {
+                    "citysName": "江油市"
+                },
+                {
+                    "citysName": "秀水"
+                },
+                {
+                    "citysName": "崇州市"
+                }
+            ],
+            "provinceName": "绵阳市"
+        },
+        {
+            "citys": [
+                {   
+                    "citysName": "南充市"
+                },
+                {   
+                    "citysName": "南部县"
+                },
+                {
+                    "citysName": "营山县"
+                },
+                {
+                    "citysName": "蓬安县"
+                },
+                {
+                    "citysName": "仪陇县"
+                },
+                {
+                    "citysName": "西充县"
+                },
+                {
+                    "citysName": "阆中市"
+                }
+            ],
+            "provinceName": "南充市"
+        },
+        {
+            "citys": [
+                {   
+                    "citysName": "德阳市"
+                },
+                {   
+                    "citysName": "中江县"
+                },
+                {
+                    "citysName": "罗江县"
+                },
+                {
+                    "citysName": "广汉市"   
+                },
+                {
+                    "citysName": "什邡市"
+                },
+                {
+                    "citysName": "绵竹市"
+                }
+            ],
+            "provinceName": "德阳市"
+        },
+        {
+            "citys": [
+                {   
+                    "citysName": "雅安市"
+                },
+                {   
+                    "citysName": "名山县"
+                },
+                {
+                    "citysName": "荥经县"   
+                },
+                {
+                    "citysName": "汉源县"
+                },
+                {
+                    "citysName": "石棉县"
+                },
+                {
+                    "citysName": "天全县"
+                },
+                {
+                    "citysName": "芦山县"
+                },
+                {
+                    "citysName": "宝兴县"
+                },
+                {
+                    "citysName": "九襄镇"
+                }
+            ],
+            "provinceName": "雅安市"
+        },
+        {
+            "citys": [
+                {   
+                    "citysName": "攀枝花市"
+                },
+                {   
+                    "citysName": "米易县"
+                },
+                {
+                    "citysName": "盐边县"   
+                }
+            ],
+            "provinceName": "攀枝花市"
+        },
+        {
+            "citys": [
+                {   
+                    "citysName": "乐山市"
+                },
+                {   
+                    "citysName": "犍为县"
+                },
+                {
+                    "citysName": "井研县"
+                },
+                {
+                    "citysName": "夹江县"
+                },
+                {
+                    "citysName": "沐川县"
+                },
+                {
+                    "citysName": "马边县"
+                },
+                {
+                    "citysName": "峨眉山市"
+                },
+                {
+                    "citysName": "五通桥"
+                },
+                {
+                    "citysName": "沙湾"
+                }
+            ],
+            "provinceName": "乐山市"
+        },
+        {
+            "citys": [
+                {   
+                    "citysName": "西昌市"
+                },
+                {   
+                    "citysName": "盐源县"
+                },
+                {
+                    "citysName": "德昌县"
+                },
+                {
+                    "citysName": "会理县"
+                },
+                {
+                    "citysName": "会东县"
+                },
+                {
+                    "citysName": "布拖县"
+                },
+                {
+                    "citysName": "金阳县"
+                },
+                {
+                    "citysName": "昭觉县"
+                },
+                {
+                    "citysName": "冕宁县"
+                },
+                {
+                    "citysName": "越西县"
+                },
+                {
+                    "citysName": "甘洛县"
+                },
+                {
+                    "citysName": "美姑县"
+                },
+                {
+                    "citysName": "雷波县"
+                },
+                {
+                    "citysName": "演示县"
+                }
+            ],
+            "provinceName": "凉山州"
+        },
+        {
+            "citys": [
+                {   
+                    "citysName": "甘孜州"
+                },
+                {   
+                    "citysName": "稻城县"
+                },
+                {
+                    "citysName": "乡城县"
+                },
+                {
+                    "citysName": "巴塘县"
+                },
+                {
+                    "citysName": "理塘县"
+                },
+                {
+                    "citysName": "色达县"
+                },
+                {
+                    "citysName": "石渠县"
+                },
+                {
+                    "citysName": "白玉县"
+                },
+                {
+                    "citysName": "德格县"
+                },
+                {
+                    "citysName": "新龙县"
+                },
+                {
+                    "citysName": "甘孜县"
+                },
+                {
+                    "citysName": "炉霍县"
+                },
+                {
+                    "citysName": "道孚县"
+                },
+                {
+                    "citysName": "雅江县"
+                },
+                {
+                    "citysName": "九龙县"
+                },
+                {
+                    "citysName": "丹巴县"
+                },
+                {
+                    "citysName": "泸定县"
+                },
+                {
+                    "citysName": "康定县"
+                }
+            ],
+            "provinceName": "甘孜州"
+        },
+        {
+            "citys": [
+                {   
+                    "citysName": "汶川县"
+                },
+                {   
+                    "citysName": "理县"
+                },
+                {
+                    "citysName": "茂县"
+                },
+                {
+                    "citysName": "松潘县"
+                },
+                {
+                    "citysName": "九寨沟县"
+                },
+                {
+                    "citysName": "金川县"
+                },
+                {
+                    "citysName": "小金县"
+                },
+                {
+                    "citysName": "黑水县"
+                },
+                {
+                    "citysName": "马尔康县"
+                },
+                {
+                    "citysName": "壤塘县"
+                },
+                {
+                    "citysName": "阿坝县"
+                },
+                {
+                    "citysName": "若尔盖县"
+                },
+                {
+                    "citysName": "红原县"
+                },
+                {
+                    "citysName": "川主寺"
+                },
+                {
+                    "citysName": "水磨镇"
+                }
+            ],
+            "provinceName": "阿坝州"
+        },
+        {
+            "citys": [
+                {   
+                    "citysName": "安岳县"
+                },
+                {   
+                    "citysName": "乐至县"
+                },
+                {
+                    "citysName": "简阳市"
+                },
+                {
+                    "citysName": "丹山镇"
+                }
+            ],
+            "provinceName": "资阳市"
+        },
+        {
+            "citys": [
+                {   
+                    "citysName": "巴中市"
+                },
+                {   
+                    "citysName": "通江县"
+                },
+                {
+                    "citysName": "南江县"
+                },
+                {
+                    "citysName": "平昌县"
+                }
+            ],
+            "provinceName": "巴中市"
+        },
+        {
+            "citys": [
+                {   
+                    "citysName": "达州市"
+                },
+                {   
+                    "citysName": "宣汉县"
+                },
+                {
+                    "citysName": "开江县"
+                },
+                {
+                    "citysName": "大竹县"
+                },
+                {
+                    "citysName": "渠县"
+                },
+                {
+                    "citysName": "万源市"
+                }
+            ],
+            "provinceName": "达州市"
+        },
+        {
+            "citys": [
+                {   
+                    "citysName": "广安市"
+                },
+                {   
+                    "citysName": "岳池县"
+                },
+                {
+                    "citysName": "武胜县"
+                },
+                {
+                    "citysName": "邻水县"
+                },
+                {
+                    "citysName": "华蓥市"
+                }
+            ],
+            "provinceName": "广安市"
+        },
+        {
+            "citys": [
+                {   
+                    "citysName": "宜宾市"
+                },
+                {   
+                    "citysName": "叙州区"
+                },
+                {
+                    "citysName": "南溪区 "
+                },
+                {
+                    "citysName": "江安县"
+                },
+                {
+                    "citysName": "长宁县"
+                },
+                {   
+                    "citysName": "高县"
+                },
+                {   
+                    "citysName": "珙县"
+                },
+                {
+                    "citysName": "筠连县 "
+                },
+                {
+                    "citysName": "兴文县"
+                },
+                {
+                    "citysName": "屏山县"
+                }
+            ],
+            "provinceName": "宜宾市"
+        },
+        {
+            "citys": [
+                {   
+                    "citysName": "眉山市"
+                },
+                {   
+                    "citysName": "仁寿县"
+                },
+                {
+                    "citysName": "彭山县"
+                },
+                {
+                    "citysName": "洪雅县"
+                },
+                {
+                    "citysName": "丹棱县"
+                },
+                {   
+                    "citysName": "青神县"
+                }
+            ],
+            "provinceName": "眉山市"
+        },
+        {
+            "citys": [
+                {   
+                    "citysName": "自贡市"
+                },
+                {   
+                    "citysName": "荣县"
+                },
+                {
+                    "citysName": "富顺县"
+                }
+            ],
+            "provinceName": "自贡市"
+        },
+        {
+            "citys": [
+                {
+                    "citysName": "隆昌县"
+                },
+                {
+                    "citysName": "资中县"
+                },
+                {   
+                    "citysName": "威远县"
+                }
+            ],
+            "provinceName": "内江市"
+        },
+        {
+            "citys": [
+                {   
+                    "citysName": "遂宁市"
+                },
+                {   
+                    "citysName": "安居区"
+                },
+                {
+                    "citysName": "蓬溪县"
+                },
+                {
+                    "citysName": "射洪县"
+                },
+                {
+                    "citysName": "大英县"
+                }
+            ],
+            "provinceName": "遂宁市"
+        },
+        {
+            "citys": [
+                {   
+                    "citysName": "广元市"
+                },
+                {   
+                    "citysName": "旺苍县"
+                },
+                {
+                    "citysName": "青川县"
+                },
+                {
+                    "citysName": "剑阁县"
+                },
+                {
+                    "citysName": "苍溪县"
+                }
+            ],
+            "provinceName": "广元市"
+        }
+    ]
+}
