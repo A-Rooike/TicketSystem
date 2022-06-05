@@ -49,7 +49,7 @@
           </div>
           <div class="add_person">
             <el-button type="primary" class="btn_add" @click="addPerson">添加乘车人</el-button>
-            <span class="add_font">一张订单最多可以购买5张车票</span>
+            <span class="add_font">一张订单最多可以购买3张车票</span>
           </div>
         </div>
         <div class="letf_bottom">
@@ -78,7 +78,7 @@
         <div class="act_title">{{item.originvalue}}车站 — {{item.arrivevalue}}车站 
           <div class="price">
             应付金额
-            <span class="monsy">￥{{item.price}}</span>
+            <span class="monsy">￥{{item.needpay}}</span>
           </div>
         </div>
         <div class="detai">
@@ -107,7 +107,7 @@ export default {
   data() {
     return {
       imgurl:require(`@/assets/img/sucess.png`),
-      item:[],
+      item:{},
       active:1,
       ruleForm:{
         phone:'',
@@ -157,10 +157,10 @@ export default {
     },
     //添加人员
     addPerson(){
-      if(this.ruleForm.userinfo.length==5){
+      if(this.ruleForm.userinfo.length==3){
         this.$message({
           type:'warning',
-          message:'最多添加5个乘车人！',
+          message:'最多添加3个乘车人！',
           showClose: true
         })
       }else{
@@ -232,6 +232,8 @@ export default {
         let carinfo = this.item
         carinfo.times=this.dateFormat(this.item.times)
         carinfo.phonenumber = this.ruleForm.phone
+        carinfo.numbers = this.ruleForm.userinfo.length
+        carinfo.needpay =  carinfo.numbers* carinfo.price
         carinfo=JSON.stringify(carinfo)
         let userinfo = JSON.stringify(this.ruleForm.userinfo)
         axios.get('http://localhost:8080/order',{
@@ -290,7 +292,7 @@ export default {
   created() {
     console.log(this.$route);
     let info = JSON.parse(window.sessionStorage.getItem('buy'))
-    console.log(info);
+    console.log(info,'buy');
     if(info.pay=='0'){
       this.item =JSON.parse(this.$route.query.item)
       this.active=2
@@ -299,6 +301,22 @@ export default {
        this.item =JSON.parse(this.$route.query.item)
     }
     
+  },
+  watch:{
+    '$route'(to,from){
+      console.log(this.$route);
+    let info = JSON.parse(window.sessionStorage.getItem('buy'))
+    console.log(info,'buy');
+    if(info.pay=='0'){
+      this.item =JSON.parse(this.$route.query.item)
+      this.active=2
+    }else{
+       this.active=1
+       this.item =JSON.parse(this.$route.query.item)
+    }
+    
+    }
+
   },
 }
 </script>

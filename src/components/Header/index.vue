@@ -13,14 +13,15 @@
     </div>
     <div class="center">
       <div class="c_help">
-        <img src="../../assets/img/favicon.jpg" alt="" class="logo" @click="toHome">
+        <img src="../../assets/img/tuanzi.jpg" alt="" class="logo" @click="toHome">
       </div>
       <el-link :underline="false" class="logo_font">汽车票务购买系统</el-link>
       <div class="c_login">
-        <el-link type="primary" :underline="false" @click="toPerson" v-if="islogin==true">个人中心</el-link>
+        <el-link type="primary" :underline="false" @click="toPerson" v-if="islogin">个人中心</el-link>
         <el-link type="primary" :underline="false" @click="toLogin" v-else>登录</el-link>
-        <el-divider direction="vertical"></el-divider>
-        <el-link type="warning" :underline="false" @click="toregiste">注册</el-link>
+        <el-divider direction="vertical" ></el-divider>
+        <el-link type="warning" :underline="false" @click="toregiste" v-if="!islogin">注册</el-link>
+        <el-link type="warning" :underline="false" @click="outlogin" v-if="islogin">退出登录</el-link>
       </div>
     </div>
   </div>
@@ -57,10 +58,24 @@ export default {
     },
     toHome(){
       this.$router.push('/home')
+    },
+    outlogin(){
+      delCookie('LOG')
+      this.islogin = false
+      this.$router.replace('/home')
     }
   },
-  mounted() {
+  watch:{
+    '$route'(to,from){
+      let re = JSON.parse(getCookie("LOG"))
+      this.islogin=re.ISLO
+    }
+
+  },
+  created() {
+    
    let re = JSON.parse(getCookie("LOG"))
+   console.log(re);
    this.islogin=re.ISLO
   },
 }
@@ -100,10 +115,13 @@ export default {
     justify-content: space-around;
     height: 70px;
     .c_help{
+      height: 100%;
       .logo{
-        width: 200px;
+        width: 150px;
         height: 60px;
         cursor: pointer;
+        position: relative;
+        top: 5px;
       }
     }
     .logo_font{

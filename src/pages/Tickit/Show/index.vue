@@ -70,7 +70,7 @@
                 <div class="price" style="width:130px">￥{{item.price}}</div>
                 <div class="reNumber" style="width:130px"><span class="renum">余</span>{{item.ticket}}</div>
                 <div class="op" style="width:130px" v-if="!endorse.disable">
-                  <el-button type="primary" v-if="item.ticket!=0" @click="toreser(item)" :disabled='item.overtime' >预定</el-button>
+                  <el-button type="primary" v-if="item.ticket!=0" @click="toreser(item)" :disabled="item.overtime">预定</el-button>
                   <el-button  type="info" disabled v-else>无票</el-button>
                 </div>
                 <div class="op" style="width:130px" v-if="endorse.disable">
@@ -95,13 +95,15 @@
 <script>
 import axios from 'axios'
 import Attention from '../Attention'
-// import {setCookie,getCookie,delCookie} from '../../api/cookie'
+import {setCookie,getCookie,delCookie} from '../../../api/cookie'
 export default {
   components:{
     Attention
   },
   data() {
     return {
+      //是否登录
+      islogin:false,
       loading:true,
       Tickets:[],
       showcity:false,
@@ -169,12 +171,18 @@ export default {
       let _hour = ( 10 > now.getHours() ) ? '0' + now.getHours() : now.getHours();
       let _minute = ( 10 > now.getMinutes() ) ? '0' + now.getMinutes() : now.getMinutes();
       for(let i in data){
-        if(data[i].detailtime.slice(0,2) < _hour || (data[i].detailtime.slice(0,2)==_hour && data[i].detailtime.slice(3,5)<_minute)){
-          data[i].overtime=true
+        if(this.dateFormat(data[i].times)==this.dateFormat(now)){
+          if(data[i].detailtime.slice(0,2) < _hour || (data[i].detailtime.slice(0,2)==_hour && data[i].detailtime.slice(3,5)<_minute)){
+              data[i].overtime=true
+          }else{
+              data[i].overtime=false
+          }
         }else{
           data[i].overtime=false
         }
+      
       }
+      console.log(data);
       return data
     },
      //立即搜索
@@ -235,26 +243,51 @@ export default {
     },
     //点击预定
     toreser(item){
-      window.sessionStorage.setItem('buy',JSON.stringify(item))
-      this.$router.push({
-        // path:'/tickit/buy',
-        name:'buy',
-        query:{
-          item:JSON.stringify(item)
-        }
-      })
+      if(this.islogin){
+        window.sessionStorage.setItem('buy',JSON.stringify(item))
+        this.$router.push({
+          // path:'/tickit/buy',
+          name:'buy',
+          query:{
+            item:JSON.stringify(item)
+          }
+        })
+      }else{
+        this.$router.push({
+          path:'/login'
+        })
+      }
+     
     },
     //点击改签
     toendorse(item){
+       console.log(item);
+      console.log(this.endorse);
       this.$confirm('你确定要改签到该车次吗', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          console.log(item);
-          console.log(this.endorse);
+          let flag = 0;
+          if(this.endorse.pay =='0'){
+            //未支付
+            this.endorse.needpay =  this.endorse.numbers*item.price
+          }else if(this.endorse.pay == '1'){
+            this.endorse.needpay = this.endorse.numbers*Math.abs(this.endorse.price - item.price)
+          }
+          if(this.endorse.price <item.price){
+            this.endorse.pay == '0'
+          }else{
+            flag = 1
+          }
+          
           this.endorse.time = this.dateFormat(this.endorse.time)
           item.times = this.dateFormat(item.times)
+          item.needpay = this.endorse.needpay
+
+
+          console.log(item,'item');
+          console.log(this.endorse,'this.endorse');
           axios({
             method:'get',
             params:{
@@ -264,10 +297,26 @@ export default {
             url:'http://localhost:8080/endorse'
           }).then(
             res=>{
+              console.log(res);
               if(res.data =='修改完成'){
                 this.$message({
                     message: '改签成功！',
                     type: 'success'
+                });
+              if(flag == 1){
+                  //
+                  setTimeout(()=>{
+                      this.$message({
+                      message: '多余的钱将会退回您的账户！',
+                      type: 'success'
+                    });
+                  },1000)
+                 
+                }
+              }else if(res.data='该订单已存在！'){
+                   this.$message({
+                    message: '改签失败！该订单已存在！',
+                    type: 'error'
                 });
               }
             }
@@ -306,11 +355,14 @@ export default {
         this.loading=false
         res.data.sort(this.resetData)
         this.Tickets= this.panduanTime(res.data);
-       
+        console.log(  this.Tickets);
       },
       err=>{}
     )
-  
+    //判断用户是否登录  
+    let re = JSON.parse(getCookie("LOG"))
+    console.log(re);
+    this.islogin=re.ISLO
 
   },
 }

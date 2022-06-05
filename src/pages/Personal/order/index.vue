@@ -30,9 +30,9 @@
                   </div>
                   <div class="price" style="width:120px">￥{{item.price}}</div>
                   <div class="op" style="width:266px">
-                    <el-button type="primary" class="gaiqian" @click="endorse(item)">改签</el-button>
-                    <el-button type="primary" class="tuipiao" v-if="item.pay==0" @click="topay(item)">支付</el-button>
-                    <el-button type="primary" class="tuipiao" v-else @click="refund(item.id)">退票</el-button>
+                    <el-button type="primary" class="gaiqian" @click="endorse(item)"  :disabled="item.overtime">改签</el-button>
+                    <el-button type="primary" class="tuipiao" v-if="item.pay==0" @click="topay(item)"  :disabled="item.overtime">支付</el-button>
+                    <el-button type="primary" class="tuipiao" v-else @click="refund(item)"  :disabled="item.overtime">退票</el-button>
                   </div>
                 </li>
               </ul>
@@ -68,8 +68,9 @@
                   </div>
                   <div class="price" style="width:120px">￥{{item.price}}</div>
                   <div class="op" style="width:266px">
-                    <el-button type="primary" class="gaiqian">改签</el-button>
-                    <el-button type="primary" class="tuipiao">支付</el-button>
+                     <el-button type="primary" class="gaiqian" @click="endorse(item)"  :disabled="item.overtime">改签</el-button>
+                    <el-button type="primary" class="tuipiao" v-if="item.pay==0" @click="topay(item)"  :disabled="item.overtime">支付</el-button>
+                
                   </div>
                 </li>
               </ul>
@@ -105,8 +106,8 @@
                   </div>
                   <div class="price" style="width:120px">￥{{item.price}}</div>
                   <div class="op" style="width:266px">
-                    <el-button type="primary" class="gaiqian">改签</el-button>
-                    <el-button type="primary" class="tuipiao">退票</el-button>
+                     <el-button type="primary" class="gaiqian" @click="endorse(item)"  :disabled="item.overtime">改签</el-button>
+                    <el-button type="primary" class="tuipiao" @click="refund(item)"  :disabled="item.overtime">退票</el-button>
                   </div>
                 </li>
               </ul>
@@ -149,36 +150,64 @@ export default {
       else if(a.detailtime.slice(0,2)!=  b.detailtime.slice(0,2)) return a.detailtime.slice(0,2) < b.detailtime.slice(0,2)?-1:1
       else  if (a.detailtime.slice(3,5)!= b.detailtime.slice(3,5)) return a.detailtime.slice(3,5) < b.detailtime.slice(3,5)?-1:1
     },
-    //退票
-    refund(id){
-      this.$confirm('你确定要退票吗', '提示', {
+     //时间小于当前时间排序
+    panduanTime(data){ 
+      let now= new Date();
+      let _hour = ( 10 > now.getHours() ) ? '0' + now.getHours() : now.getHours();
+      let _minute = ( 10 > now.getMinutes() ) ? '0' + now.getMinutes() : now.getMinutes();
+      for(let i in data){
+        let nowdate = this.dateFormat(now)
+        let data_date = this.dateFormat(data[i].times)
+        if(nowdate == data_date){
+          if(data[i].detailtime.slice(0,2) < _hour || (data[i].detailtime.slice(0,2)==_hour && data[i].detailtime.slice(3,5)<_minute)){
+              data[i].overtime=true
+          }else{
+              data[i].overtime=false
+          }
+        }else if(nowdate > data_date){
+            data[i].overtime=true
+        }else{
+          data[i].overtime=false
+        }
+      
+      }
+      console.log(data,'@');
+      return data
+    },
+   //退票
+    refund(item){
+       this.$confirm('你确定要退票吗', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-           axios.get(`http://localhost:8080/refund?refund=${id}`).then(
-            res=>{
-              if(res.data='订单删除成功！'){
-                this.getorder()
-                 this.$message({
-                  type: 'success',
-                  message: '退票成功!'
-                });
-              }
+          axios.get(`http://localhost:8080/refund?refund=${item.id}&carid=${item.carid}`).then(res=>{
+            console.log(res);
+            if(res.data=='订单删除成功！'){
+              this.$message({
+                type: 'success',
+                message: '删除成功!'
+              });
             }
-          )
+            this.getorder()
+          })
+          
         }).catch(() => {
-        });
-       
-   
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });          
+      });
     },
     //获取订单信息
     getorder(){
       let originText = this.getphonenumber()
+      console.log(originText);
       axios.get(`http://localhost:8080/getorder?phonenumber=${originText}`).then(
       res=>{
         console.log(res);
         this.order = res.data.sort(this.resetData)
+        this.order = this.panduanTime(this.order)
         this.payedorder = []
         this.nopayorder = []
         this.order.forEach((ele)=>{
@@ -194,6 +223,7 @@ export default {
     //获取手机号码
     getphonenumber(){
       let phonenumber = JSON.parse(getCookie('LOG')).PHNB
+     
       let bytes = CryptoJS.AES.decrypt(phonenumber,'gly')
       return bytes.toString(CryptoJS.enc.Utf8);//手机号码
     },
@@ -232,7 +262,7 @@ export default {
 <style lang="less" scoped>
   .bigcontnet{
     width: 100%;
-    height: 500px;
+    // height: 500px;
     // border: 1px solid #000;
     padding: 25px 20px;
     box-sizing: border-box;

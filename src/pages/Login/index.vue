@@ -1,9 +1,10 @@
 <template>
   <div>
+    <Ltop name='登录'></Ltop>
     <el-row row:gutter="24" class="All">
       <el-col :span="14">
         <div class="left">
-          <img src="../../assets/img/tuanzi.jpg" alt="" class="pic">
+          <img src="../../assets/img/tuanzi1.jpg" alt="" class="pic">
         </div>
       </el-col>
       <el-col :span="10" >
@@ -40,6 +41,7 @@
 
 <script>
 import { GVerify } from '../../api/verifyCode';
+import Ltop from './Ltop'
 import axios from 'axios'
 import CryptoJS from "crypto-js";//加密
 import {setCookie,getCookie,delCookie} from '../../api/cookie'
@@ -98,7 +100,7 @@ export default {
         axios.get(`http://localhost:8080/login?phonenumber=${ruleForm.phoneNUmber}&password=${ruleForm.password}`).then(
           res=>{
             if(res.data=='登录成功！'){
-              let ciperText = CryptoJS.AES.encrypt('15779665622','gly').toString();
+              let ciperText = CryptoJS.AES.encrypt(ruleForm.phoneNUmber,'gly').toString();
               let p=JSON.stringify({PHNB:ciperText,ISLO:true})
               async function set(){
                 await setCookie('LOG',p,10)
@@ -125,6 +127,9 @@ export default {
   },
   mounted () {
     this.verifyCode = new GVerify('v_container')
+  },
+  components:{
+    Ltop
   }
 }
 </script>
@@ -144,6 +149,7 @@ export default {
     .pic{
       width: 400px;
       height: 300px;
+      margin-top: 150px;
     }
   }
   .right{
@@ -154,6 +160,9 @@ export default {
     justify-content: center;
     margin-top: 200px;
     .r_from{
+      position: relative;
+      top: -25px;
+      left: -100px;
       width: 400px;
       height: 370px;
       border: 1px solid rgb(220,223,230);

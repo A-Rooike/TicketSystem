@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Ltop name='注册'></Ltop>
     <div class="main">
       <div class="center">
         <div class="top">
@@ -38,6 +39,7 @@
 <script>
 import axios from 'axios';
 import { GVerify } from '../../api/verifyCode';
+import Ltop from '../Login/Ltop'
 
 export default {
   data() {
@@ -87,6 +89,9 @@ export default {
       },
       verifyCode: null
     }
+  },
+ components:{
+    Ltop
   },
   methods: {
      // 检查手机号码
@@ -141,23 +146,25 @@ export default {
   },
   mounted () {
     this.verifyCode = new GVerify('v_container')
-  }
+  },
+ 
 }
 </script>
 
 <style lang="less" scoped>
 
 .main{
+
   width: 100%;
-  height: 800px;
+  height: 650px;
   background: rgb(245,245,245);
   
   .center{
     width: 80%;
-    height: 100%;
+    height: 600px;
     background: white;
     position: absolute;
-    top: 40px;
+    top: 75px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;

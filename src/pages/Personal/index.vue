@@ -80,7 +80,7 @@ export default {
       .right{
         float: right;
         width: 910px;
-        height: 650px;
+        // height: 650px;
         background: white;
       }
     }
